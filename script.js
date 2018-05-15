@@ -1,40 +1,29 @@
-//Lecture 6: Destructuring
+//Lecture 7: Arrays
+
+const boxes = document.querySelectorAll(".box");
+
+console.log(boxes);
 
 //ES5
-var john = ["John",25];
-var name5 = john[0];
-var age5 = john[1];
+/*var boxesArr5 = Array.prototype.slice.call(boxes);
+boxesArr5.forEach(function(current) {
+    current.style.backgroundColor = "dodgerblue";
+})*/
 
 //ES6
-const [name, age] = ["John", 25];
+var boxesArr6 = Array.from(boxes);
+boxesArr6.forEach(current => current.style.backgroundColor = "dodgerBlue");
 
-console.log(name);
-console.log(age);
+//Array.from(boxes).forEach(current => current.style.backgroundColor = "dodgerBlue");
 
-//You can use destructuring on objects too
-const personObj = {
-    firstName: "Pedro",
-    lastName: "Sandisk"
+//Loops
+
+//ES6
+for(const currentElement of boxesArr6){
+    //continue or break can work here
+    //if(currentElement.className === "box blue") {
+    if(currentElement.className.includes("blue")){
+        continue;
+    } 
+    currentElement.textContent = "I'm a barbie girl"
 };
-
-const { firstName, lastName } = personObj;
-
-console.log(firstName);
-console.log(lastName);
-
-const { firstName: a, lastName: b } = personObj;
-
-console.log(a);
-console.log(b);
-
-//Practical example using functions
-//Let's say we want to get the age and retirement years based on the year
-
-function calcRetirement(year) {
-    const age = new Date().getFullYear() - year;
-    return [age, 65 - age];
-}
-
-const [age2, retirement] = calcRetirement(1995);
-console.log(`Age is ${age2} and retires at ${retirement}`);
-
