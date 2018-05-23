@@ -1,43 +1,24 @@
-//Lecture 7: Arrays
+//Lecture 8: Spread Operator
 
+function addFour(a, b, c, d) {
+    return a + b + c + d;
+}
+
+//ES5
+var sum1 = addFour(10,3,2,2);
+console.log(sum1);
+
+var arr = [10,3,2,2];
+var sum2 = addFour.apply(null, arr);
+console.log(sum2);
+
+//ES6
+const sum3 = addFour(...arr);
+console.log(sum3);
+
+//Another example
+const h = document.querySelector("h1");
 const boxes = document.querySelectorAll(".box");
+const all = [h,...boxes];
 
-console.log(boxes);
-
-//ES5
-/*var boxesArr5 = Array.prototype.slice.call(boxes);
-boxesArr5.forEach(function(current) {
-    current.style.backgroundColor = "dodgerblue";
-})*/
-
-//ES6
-const boxesArr6 = Array.from(boxes); //from transforms the nodeList to array
-boxesArr6.forEach(current => current.style.backgroundColor = "dodgerBlue");
-
-//Array.from(boxes).forEach(current => current.style.backgroundColor = "dodgerBlue");
-
-//Loops
-//ES6
-for(const currentElement of boxesArr6){
-    //continue or break can work here
-    //if(currentElement.className === "box blue") {
-    if(currentElement.className.includes("blue")){
-        continue;
-    } 
-    currentElement.textContent = "I'm a barbie girl"
-};
-
-//ES5
-var ages = [12, 17, 8, 18, 21, 11];
-
-var fullAge = ages.map(function(currentElement) {
-    return currentElement >= 18;
-})
-
-console.log(fullAge);
-console.log(fullAge.indexOf(true));
-console.log(ages[fullAge.indexOf(true)]);
-
-//ES6
-console.log(ages.findIndex(currentElement => currentElement >= 18));
-console.log(ages.find(currentElement => currentElement >= 18));
+Array.from(all).forEach(currentElement => currentElement.style.color = "orange");
