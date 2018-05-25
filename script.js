@@ -1,24 +1,24 @@
-//Lecture 8: Spread Operator
-
-function addFour(a, b, c, d) {
-    return a + b + c + d;
-}
+//Lecture 9: Rest Parameters
 
 //ES5
-var sum1 = addFour(10,3,2,2);
-console.log(sum1);
+function isFullAge5(){
+    //console.log(arguments);
+    var argsArr = Array.prototype.slice.call(arguments);
 
-var arr = [10,3,2,2];
-var sum2 = addFour.apply(null, arr);
-console.log(sum2);
+    argsArr.forEach(function(currentElement) {
+        console.log((2018 - currentElement) >= 18);
+    });
+}
+
+isFullAge5(1995,2010,1998);
 
 //ES6
-const sum3 = addFour(...arr);
-console.log(sum3);
+function isFullAge6(limit, ...years){
+    //console.log(years); //Gonna produce an array out of all the elements
 
-//Another example
-const h = document.querySelector("h1");
-const boxes = document.querySelectorAll(".box");
-const all = [h,...boxes];
+    years.forEach(currentElement => {
+        console.log((2018 - currentElement) >= limit);
+    });
+}
 
-Array.from(all).forEach(currentElement => currentElement.style.color = "orange");
+isFullAge6(18,1995,2010,1998);
